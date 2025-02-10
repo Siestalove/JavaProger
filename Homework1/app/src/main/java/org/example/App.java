@@ -10,16 +10,37 @@ public class App {
 
 
     public static void main(String[] args) {
+        String outputDir = "src/main/resources";
 
         List<String> inputFiles = new ArrayList<>();
 
         for (int i = 0; i < args.length; i++) {
-            inputFiles.add(args[i]);
+            if (args[i].equals("-o")) {
+                if (i + 1 < args.length) {
+                    outputDir = args[i + 1];
+                    i++;
+                } else {
+                    System.out.println("Ошибка: укажите папку после -o");
+                    return;
+                }
+            }
+            else {
+                    inputFiles.add(args[i]);
+                }
         }
 
-        String integersFile ="integers.txt";
-        String floatsFile ="floats.txt";
-        String stringsFile ="strings.txt";
+        File directory = new File(outputDir);
+        if (!directory.exists()) {
+            if (directory.mkdirs()) {
+                System.out.println("Создана папка для выходных файлов: " + outputDir);
+            } else {
+                System.err.println("Ошибка: не удалось создать папку " + outputDir);
+                return;
+            }
+        }
+        String integersFile =outputDir + "/" + "integers.txt";
+        String floatsFile =outputDir + "/" + "floats.txt";
+        String stringsFile =outputDir + "/" + "strings.txt";
         try (
                 BufferedWriter intWriter = new BufferedWriter(new FileWriter(integersFile));
                 BufferedWriter floatWriter = new BufferedWriter(new FileWriter(floatsFile));
