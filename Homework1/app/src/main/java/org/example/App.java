@@ -11,6 +11,7 @@ public class App {
 
     public static void main(String[] args) {
         String outputDir = "src/main/resources";
+        String prefix = "";
 
         List<String> inputFiles = new ArrayList<>();
 
@@ -24,7 +25,15 @@ public class App {
                     return;
                 }
             }
-            else {
+            else if (args[i].equals("-p")) {
+                if (i + 1 < args.length) {
+                    prefix = args[i + 1];
+                    i++;
+                } else {
+                    System.out.println("Ошибка: укажите префикс после -p");
+                    return;
+                }
+            }else {
                     inputFiles.add(args[i]);
                 }
         }
@@ -38,9 +47,9 @@ public class App {
                 return;
             }
         }
-        String integersFile =outputDir + "/" + "integers.txt";
-        String floatsFile =outputDir + "/" + "floats.txt";
-        String stringsFile =outputDir + "/" + "strings.txt";
+            String integersFile = outputDir + "/" + prefix + "integers.txt";
+            String floatsFile = outputDir + "/" + prefix + "floats.txt";
+            String stringsFile = outputDir + "/" + prefix + "strings.txt";
         try (
                 BufferedWriter intWriter = new BufferedWriter(new FileWriter(integersFile));
                 BufferedWriter floatWriter = new BufferedWriter(new FileWriter(floatsFile));
