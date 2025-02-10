@@ -12,6 +12,7 @@ public class App {
     public static void main(String[] args) {
         String outputDir = "src/main/resources";
         String prefix = "";
+        boolean addwrite = false;
 
         List<String> inputFiles = new ArrayList<>();
 
@@ -33,6 +34,8 @@ public class App {
                     System.out.println("Ошибка: укажите префикс после -p");
                     return;
                 }
+            }else if (args[i].equals("-a")) {
+                addwrite = true;
             }else {
                     inputFiles.add(args[i]);
                 }
@@ -51,9 +54,9 @@ public class App {
             String floatsFile = outputDir + "/" + prefix + "floats.txt";
             String stringsFile = outputDir + "/" + prefix + "strings.txt";
         try (
-                BufferedWriter intWriter = new BufferedWriter(new FileWriter(integersFile));
-                BufferedWriter floatWriter = new BufferedWriter(new FileWriter(floatsFile));
-                BufferedWriter stringWriter = new BufferedWriter(new FileWriter(stringsFile))
+                BufferedWriter intWriter = new BufferedWriter(new FileWriter(integersFile, addwrite));
+                BufferedWriter floatWriter = new BufferedWriter(new FileWriter(floatsFile, addwrite));
+                BufferedWriter stringWriter = new BufferedWriter(new FileWriter(stringsFile, addwrite));
         ) {
             for (String fileName : inputFiles) {
                 writeToFile(fileName, intWriter, floatWriter, stringWriter);
