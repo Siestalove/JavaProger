@@ -80,7 +80,7 @@ public class App {
         }
     }
 
-    private static void writeToFile(String filename, BufferedWriter intWriter, BufferedWriter floatWriter, BufferedWriter stringWriter,
+    static void writeToFile(String filename, BufferedWriter intWriter, BufferedWriter floatWriter, BufferedWriter stringWriter,
                                     Stats integerStats, Stats floatStats, StringStats stringStats) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -107,7 +107,7 @@ public class App {
         }
     }
 
-    private static boolean isInteger(String line) {
+    static boolean isInteger(String line) {
         try {
             Integer.parseInt(line);
             return true;
@@ -116,7 +116,7 @@ public class App {
         }
     }
 
-    private static boolean isFloat(String line) {
+    static boolean isFloat(String line) {
         try {
             Float.parseFloat(line);
             return line.contains(".") || line.contains(",");
