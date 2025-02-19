@@ -47,7 +47,12 @@ public class AppTest {
         assertTrue(Files.exists(Paths.get(intFile)));
         assertTrue(Files.exists(Paths.get(floatFile)));
         assertTrue(Files.exists(Paths.get(stringFile)));
+
+        assertTrue(Files.size(Paths.get(intFile)) > 0);
+        assertTrue(Files.size(Paths.get(floatFile)) > 0);
+        assertTrue(Files.size(Paths.get(stringFile)) > 0);
     }
+
 
     @Test
     public void testIsInteger() {
