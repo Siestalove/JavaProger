@@ -4,9 +4,6 @@ package org.example;
 import java.io.*;
 import java.util.*;
 
-
-
-
 public class App {
     public static void main(String[] args) {
         String outputDir = "src/main/resources";

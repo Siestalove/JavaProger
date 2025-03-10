@@ -16,6 +16,7 @@ public class App {
     public static class CalculationThread implements Runnable {
         private int threadNumber;
 
+
         public CalculationThread(int threadNumber) {
             this.threadNumber = threadNumber;
         }
@@ -33,7 +34,7 @@ public class App {
 
                     synchronized (App.class) {
                         System.out.print("\033[H\033[2J");
-                        System.out.flush();
+
 
                         for (int j = 0; j < Thread_count; j++) {
                             if (threadCompleted[j]) {
@@ -45,7 +46,7 @@ public class App {
                         }
                     }
 
-                    Thread.sleep(500);
+                    Thread.sleep(1110);
                 }
 
                 long endTime = System.nanoTime();
